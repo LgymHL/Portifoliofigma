@@ -1,0 +1,10 @@
+{
+  "description": "Provides a precise, step-by-step platform for executing technical specifications with strict adherence to detailed project requirements and constraints.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

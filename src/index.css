@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import 'tailwindcss';
+
+/* ─────────────────────────────────────────────
+   PALETA 1 — "Arquivo" (padrão)
+   Para trocar, comente este bloco e descomente outro.
+───────────────────────────────────────────── */
+:root {
+  --bg: #F2F2F0;
+  --surface: #FFFFFF;
+  --ink: #0E0E0E;
+  --subtle: #6B6B68;
+  --border: #D8D8D4;
+  --accent: #1B4DE4;
+  --accent-2: #FF5A1F;
+  --accent-3: #0F9D58;
+}
+[data-theme="dark"] {
+  --bg: #0B0B0B;
+  --surface: #161616;
+  --ink: #F2F2F0;
+  --subtle: #8A8A86;
+  --border: #2A2A2A;
+}
+
+/* ─────────────────────────────────────────────
+   PALETA 2 — "Grão"
+   (descomente para ativar)
+
+:root {
+  --bg: #EDEAE4;
+  --surface: #F7F5F1;
+  --ink: #111111;
+  --subtle: #6E675E;
+  --border: #D5CFC5;
+  --accent: #C2410C;
+  --accent-2: #1E3A8A;
+  --accent-3: #A16207;
+}
+[data-theme="dark"] {
+  --bg: #14120F;
+  --surface: #1E1B17;
+  --ink: #EDEAE4;
+  --subtle: #8F877C;
+  --border: #302B25;
+}
+───────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────
+   PALETA 3 — "Kosmus"
+   (descomente para ativar)
+
+:root {
+  --bg: #F5F7FA;
+  --surface: #FFFFFF;
+  --ink: #0B1220;
+  --subtle: #5B6B80;
+  --border: #DDE3EA;
+  --accent: #22B8F0;
+  --accent-2: #1B4DE4;
+  --accent-3: #F59E0B;
+}
+[data-theme="dark"] {
+  --bg: #0B1220;
+  --surface: #131E30;
+  --ink: #E8EEF6;
+  --subtle: #7C8CA3;
+  --border: #1E2B40;
+}
+───────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────
+   TIPOGRAFIA — Escala fluida
+───────────────────────────────────────────── */
+:root {
+  --font-display: "Archivo Black", sans-serif;
+  --font-serif: "Instrument Serif", serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --text-display-xl: clamp(3rem, 12vw, 9rem);
+  --text-display-lg: clamp(2.25rem, 7vw, 5rem);
+  --text-display-md: clamp(1.75rem, 4vw, 3rem);
+  --text-body-lg: clamp(1.0625rem, 1.4vw, 1.25rem);
+  --text-body: 1.0625rem;
+  --text-mono-sm: 0.8125rem;
+}
+
+/* ─────────────────────────────────────────────
+   BASE
+───────────────────────────────────────────── */
+html {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+}
+
+/* ─────────────────────────────────────────────
+   FOCO VISÍVEL
+───────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ─────────────────────────────────────────────
+   IRIS TRANSITION — View Transitions API
+───────────────────────────────────────────── */
+@keyframes iris-in {
+  from {
+    clip-path: circle(0px at var(--iris-x, 50%) var(--iris-y, 50%));
+  }
+  to {
+    clip-path: circle(var(--iris-r, 150%) at var(--iris-x, 50%) var(--iris-y, 50%));
+  }
+}
+
+::view-transition-new(root) {
+  animation: iris-in 600ms ease-in-out both;
+}
+
+::view-transition-old(root) {
+  animation: none;
+}
+
+/* ─────────────────────────────────────────────
+   MARQUEE
+───────────────────────────────────────────── */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee-scroll 18s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─────────────────────────────────────────────
+   REDUCED MOTION
+───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+  ::view-transition-new(root),
+  ::view-transition-old(root) {
+    animation: none;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   UTILITIES
+───────────────────────────────────────────── */
+.font-display  { font-family: var(--font-display); }
+.font-serif-it { font-family: var(--font-serif); font-style: italic; }
+.font-mono     { font-family: var(--font-mono); }
+
+.text-ink    { color: var(--ink); }
+.text-subtle { color: var(--subtle); }
+.text-accent { color: var(--accent); }
+.bg-surface  { background-color: var(--surface); }
+.bg-base     { background-color: var(--bg); }
+.border-base { border-color: var(--border); }
+
+/* ─────────────────────────────────────────────
+   PAGE TRANSITION
+───────────────────────────────────────────── */
+@keyframes page-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-enter {
+  animation: page-fade-in 0.25s ease both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation: none;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   CONTACT BIG LINKS — underline animado
+───────────────────────────────────────────── */
+.contact-big-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.contact-big-link:hover::after {
+  width: 100%;
+}
+.contact-big-link:hover {
+  color: var(--accent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-big-link::after {
+    transition: none;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE GRIDS
+───────────────────────────────────────────── */
+.about-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 768px) {
+  .about-grid {
+    grid-template-columns: 320px minmax(0, 1fr);
+  }
+}
